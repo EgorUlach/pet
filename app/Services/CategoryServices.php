@@ -19,6 +19,6 @@ class CategoryServices
 
     public static function destroy(Category $category)
     {
-        return $category->destroy();
+        return $category->delete();
     }
 }
