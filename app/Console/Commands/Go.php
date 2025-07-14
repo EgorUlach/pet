@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Profile;
+use App\Models\Role;
 use App\Models\Tag;
 use Illuminate\Console\Command;
 
@@ -28,24 +31,10 @@ class Go extends Command
      */
     public function handle()
     {
-//        Post::create([
-//            "title" => "test1",
-//            "content" => "test1 content",
-//            "profile_id" => "1",
-//            "is_published" => true,
-//            "category_id" => "1",
-//            "like" => 2,
-//            "image_path" => "qweqweeqwe",
-//            "tag_id" => "1",
-//            "views" => 1,
-//        ]);
-//        $post = Post::find(1);
-//        $post->update([
-//            "title" => "title update",
-//        ]);
-//        $post->delete();
-//        dd($post);
-        $profile = Profile::first();
-        dd($profile->postLikes);
+//        $profile = Profile::first();
+//        dd($profile->role);
+        $post = Post::first();
+        return $post->likes()->syncWithoutDetaching([1,2,3,4,5]);
+//        return $post->tags()->toggle(1);
     }
 }

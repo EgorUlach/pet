@@ -16,9 +16,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts');
             $table->text('content');
             $table->foreignId('profile_id')->constrained('profiles');
-            $table->string('status');
             $table->foreignId('parent_id')->nullable()->constrained('comments');
-            $table->unsignedBigInteger('likes');
             $table->timestamps();
         });
     }

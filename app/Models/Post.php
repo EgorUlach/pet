@@ -29,7 +29,7 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes()
+    public function gatLikes()
     {
         return $this->belongsToMany(Profile::class, 'post_profile_likes', 'post_id', 'profile_id');
     }
