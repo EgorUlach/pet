@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Post;
+use App\Models\Profile;
+use App\Models\Tag;
 use Illuminate\Console\Command;
 
 class Go extends Command
@@ -12,7 +14,7 @@ class Go extends Command
      *
      * @var string
      */
-    protected $signature = 'app:go';
+    protected $signature = 'go';
 
     /**
      * The console command description.
@@ -43,5 +45,7 @@ class Go extends Command
 //        ]);
 //        $post->delete();
 //        dd($post);
+        $profile = Profile::first();
+        dd($profile->postLikes);
     }
 }

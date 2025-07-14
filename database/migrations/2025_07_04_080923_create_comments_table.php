@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('post_id');
+            $table->foreignId('post_id')->constrained('posts');
             $table->text('content');
-            $table->string('profile_id');
+            $table->foreignId('profile_id')->constrained('profiles');
             $table->string('status');
-            $table->string('parent_id');
+            $table->foreignId('parent_id')->nullable()->constrained('comments');
             $table->unsignedBigInteger('likes');
             $table->timestamps();
         });
