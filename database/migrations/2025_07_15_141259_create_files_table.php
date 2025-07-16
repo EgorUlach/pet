@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->morphs('commentable');
-            $table->foreignId('profile_id')->constrained('profiles');
-            $table->foreignId('parent_id')->nullable()->constrained('comments');
+            $table->morphs('fileable');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('files');
     }
 };

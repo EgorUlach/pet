@@ -24,7 +24,6 @@ class PostFactory extends Factory
             'profile_id' => Profile::inRandomOrder()->first()->id,
             'is_published' => fake()->boolean,
             'category_id' => Category::inRandomOrder()->first()->id,
-            'image_path' => fake()->imageUrl(),
             'published_at' => fake()->dateTime(),
         ];
     }

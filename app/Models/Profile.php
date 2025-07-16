@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
+    use HasFactory;
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -24,5 +26,25 @@ class Profile extends Model
     public function role()
     {
         return $this->user->role();
+    }
+
+    public function likedPosts()
+    {
+        return $this->morphedByMany(Post::class, 'likeable');
+    }
+
+    public function likedComments()
+    {
+        return $this->morphedByMany(Comment::class, 'likeable');
+    }
+
+    public function viewedPosts()
+    {
+        return $this->morphedByMany(Post::class, 'viewable');
+    }
+
+    public function viewedComments()
+    {
+        return $this->morphedByMany(Comment::class, 'viewable');
     }
 }

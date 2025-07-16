@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+    use HasFactory;
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -24,13 +26,38 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+//    public function comments()
+//    {
+//        return $this->hasMany(Comment::class);
+//    }
+
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, "commentable");
     }
 
-    public function gatLikes()
+//    public function likes()
+//    {
+//        return $this->belongsToMany(Profile::class, 'post_profile_likes', 'post_id', 'profile_id');
+//    }
+
+    public function likedByProfile()
     {
-        return $this->belongsToMany(Profile::class, 'post_profile_likes', 'post_id', 'profile_id');
+        return $this->morphToMany(Profile::class, "likeable");
+    }
+
+    public function file()
+    {
+        return $this->morphOne(File::class, "fileable");
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function viewByProfile()
+    {
+        return $this->morphToMany(Profile::class, "viewable");
     }
 }

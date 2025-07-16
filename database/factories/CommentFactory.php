@@ -23,8 +23,7 @@ class CommentFactory extends Factory
             'post_id' => Post::inRandomOrder()->first()->id,
             'content' => fake()->paragraph(),
             'profile_id' => Profile::inRandomOrder()->first()->id,
-            'status' => fake()->word(),
-            'parent_id' => Comment::inRandomOreder()->first()->id,
+            'parent_id' => null,
         ];
     }
 }
